@@ -1,0 +1,31 @@
+.card__title{
+    font-size: var(--paragraph-lg);
+    font-weight: 700;
+    color: var(--text-black);
+    margin-top: .8rem;
+    text-align: center;
+}
+.card__status{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+    .label{
+        font-size: var(--paragraph-md);
+        font-weight: 400;
+        color: var(--text-black);
+    }
+
+    .status{
+        font-size: var(--paragraph-md);
+        font-weight: 700;
+        
+        &.status__avail{
+            color: var(--success);  
+        }
+        &.status__full_booked{
+            color: var(--danger);
+        }
+    }
+}
