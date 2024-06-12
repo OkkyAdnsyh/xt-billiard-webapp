@@ -4,11 +4,12 @@ import styles from '@/style/modules/elements/button.module.scss';
 
 interface IButtonProps extends LinkProps{
     customType? : 'Main' | 'LinkTo' | 'Secondary',
-    content : string,
-    className : string
+    content? : string,
+    className? : string,
+    status? : boolean
 }
 
-const LinkTo = ({customType, content, className, ...rest} : IButtonProps) => {
+const LinkTo = ({customType, content, className, status, ...rest} : IButtonProps) => {
     if(customType === 'Main') return (
         <>
             <Link
@@ -28,6 +29,14 @@ const LinkTo = ({customType, content, className, ...rest} : IButtonProps) => {
                 </div>
             </Link>
         </>
+    )
+    if(customType === 'Secondary') return (
+        <Link
+            {...rest}
+            className={`${styles['sec__cta']} ${status ? styles.avail : styles['full__book']}`}
+        >
+            <p className={styles.content}>{status ? 'BOOK' : 'WAITING LIST'}</p>
+        </Link>
     )
 }
 
