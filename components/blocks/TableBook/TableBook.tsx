@@ -49,6 +49,17 @@ const TableBook = () => {
               </CardBody>
             </CardGradBg>
           </MainProductCard>
+          <MainProductCard className='home'>
+              <CardBody className='body__col__1'>
+                <CardTitle content='Coaching Session' />
+                <CardDesc content='Session for training with professional coach on site' />
+                <ProductStatus status={false} />
+                <CardCTA>
+                  <ProductPrice nominal='75.000' qty='hr' label='Price' />
+                  <LinkTo href={'/'} status={false} customType='Secondary'/>
+                </CardCTA>
+              </CardBody>
+          </MainProductCard>
         </section>
       </section>
     </>
