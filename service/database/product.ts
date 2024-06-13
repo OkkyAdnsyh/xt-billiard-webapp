@@ -13,8 +13,12 @@ export async function getAllVacantProduct() {
 
 export async function getAllProduct() {
     const result = await Products.findAll({
-        attributes: ['table_type', 'table_status']
+        attributes: ['table_type', 'table_status', 'id']
     });
 
     return result;
+}
+
+export async function getProductByType() {
+    
 }
