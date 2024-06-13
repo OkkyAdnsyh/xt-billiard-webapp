@@ -12,8 +12,14 @@ import CardCTA from '@/components/elements/Card/CardCTA/CardCTA';
 import ProductPrice from '@/components/elements/Product/ProductPrice/ProductPrice';
 import LinkTo from '@/components/elements/Button/LinkTo';
 import VipRoom from '@/public/vip-bg.jpg';
+import { IProductVacantStatus } from '@/lib/types/interface';
 
-const TableBook = () => {
+const TableBook = async () => {
+  const data : IProductVacantStatus = await fetch('http://localhost:3000/api/v1/products/check-avail',{
+    method : 'GET',
+    cache: 'no-cache'
+  }).then(res => {return res.json()});
+  
   return (
     <>
       <section className={styles.wrapper}>
@@ -27,10 +33,10 @@ const TableBook = () => {
               <CardBody className='body__home'>
                 <CardTitle content='reguler table' />
                 <CardDesc content='Reguler playing table best for beginner and professional' />
-                <ProductStatus status={false} />
+                <ProductStatus status={data?.isRegulerVacant} />
                 <CardCTA>
                   <ProductPrice nominal='50.000' qty='hr' label='Price' />
-                  <LinkTo href={'/'} status={false} customType='Secondary'/>
+                  <LinkTo href={'/product/table'} status={data?.isRegulerVacant} customType='Secondary'/>
                 </CardCTA>
               </CardBody>
             </CardGradBg>
@@ -41,10 +47,10 @@ const TableBook = () => {
               <CardBody className='body__home'>
                 <CardTitle content='vip room' />
                 <CardDesc content='Private room to play with your friend and family' />
-                <ProductStatus status={false} />
+                <ProductStatus status={data?.isVipVacant} />
                 <CardCTA>
                   <ProductPrice nominal='75.000' qty='hr' label='Price' />
-                  <LinkTo href={'/'} status={false} customType='Secondary'/>
+                  <LinkTo href={'/product/table'} status={data?.isVipVacant} customType='Secondary'/>
                 </CardCTA>
               </CardBody>
             </CardGradBg>
@@ -53,10 +59,13 @@ const TableBook = () => {
               <CardBody className='body__col__1'>
                 <CardTitle content='Coaching Session' />
                 <CardDesc content='Session for training with professional coach on site' />
-                <ProductStatus status={false} />
+                <ProductStatus status={data?.isRegulerVacant === true || data?.isVipVacant === true ? true : false} />
                 <CardCTA>
                   <ProductPrice nominal='75.000' qty='hr' label='Price' />
-                  <LinkTo href={'/'} status={false} customType='Secondary'/>
+                  <LinkTo 
+                  href={'/product/table'} 
+                  status={data?.isRegulerVacant === true || data?.isVipVacant === true ? true : false} 
+                  customType='Secondary'/>
                 </CardCTA>
               </CardBody>
           </MainProductCard>

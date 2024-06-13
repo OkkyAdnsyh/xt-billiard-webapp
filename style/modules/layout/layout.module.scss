@@ -1,0 +1,20 @@
+.product__outer{
+    max-width: 100%;
+    height: auto;
+    background: var(--text-white);
+}
+.product__inner{
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+    padding-inline: 12.4rem;
+    padding-block: 4.8rem;
+}
+.product__card__container{
+    height: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 2.4rem;
+}
